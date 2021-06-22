@@ -1,5 +1,7 @@
 const express = require('express');
 const app = new express();
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(express.static('client'))
 
@@ -27,7 +29,23 @@ app.get("/text/sentiment", (req,res) => {
     return res.send("text sentiment for "+req.query.text);
 });
 
+function getNLUInstance() {
+    let api_key = process.env.API_KEY;
+    let api_url = process.env.API_URL;
+
+    const NLUv1 = require('ibm-watson/natural-language-understanding/v1');
+    const { IamAuthenticator } = require('ibm-watson/auth');
+
+    const NLU = new NLUv1({
+        version: '2020-08-01',
+        authenticator: new IamAuthenticator({
+            apikey: api_key,
+        }),
+        serviceUrl: api_url
+    });
+    return NLU;
+}
+
 let server = app.listen(8080, () => {
     console.log('Listening', server.address().port)
 })
-
