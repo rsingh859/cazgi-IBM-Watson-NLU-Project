@@ -6,18 +6,19 @@ class EmotionTable extends React.Component {
         return (
             <div>
                 {/*You can remove this line and the line below. */}
-                {JSON.stringify(this.props.emotions)}
                 <table className="table table-bordered">
                     <tbody>
-                        {
-                            Object.entries(this.props.emotions).map(function (mapentry) {
+                        { this.props.emotions ? 
+                            (Object.entries(this.props.emotions).map(function (mapentry) {
                                 return (
                                     <tr>
                                         <td>{mapentry[0]}</td>
                                         <td>{mapentry[1]}</td>
                                     </tr>
                                 )
-                            })
+                            })) : (
+                                <h3>Empty response received</h3>
+                            )
                         }
                     </tbody>
                 </table>
