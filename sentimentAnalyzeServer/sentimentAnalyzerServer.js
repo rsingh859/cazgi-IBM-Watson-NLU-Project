@@ -18,11 +18,6 @@ app.get("/url/emotion", (req, res) => {
         'url': `${req.query.url}`,
         'features': {
             'emotion': {
-                'targets': [
-                    'cloud',
-                    'IBM',
-                    'something',
-                ]
             }
         }
     };
@@ -43,12 +38,6 @@ app.get("/url/sentiment", (req, res) => {
         'url': `${req.query.url}`,
         'features': {
             'sentiment': {
-                'targets': [
-                    'some',
-                    'IBM',
-                    'cloud',
-                    'must'
-                ]
             }
         }
     };
